@@ -44,13 +44,13 @@ public class ArrCharOps {
      *  returns true; Otherwise returns false.
      */
     public static boolean equals(char[] arr1, char[] arr2) {
-       if arr1.length != arr2.length { return false; }
-       else {
-        for (int i = 0; i < arr1.length(); i++) {
-            if (arr1[i] != arr2[i]) { return false; } 
+        if (arr1.length != arr2.length) { 
+        return false; 
         }
-            return true;
-    }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) return false;
+        }
+        return true;
     }
 
     /** Returns the index within the given array of the first occurrence of the given character.
@@ -91,16 +91,19 @@ public class ArrCharOps {
     /* Returns an array which is the concatanation of the two given arrays.
     */
     public static char[] concat(char[] arr1, char[] arr2) {
-        arrBoth = new char[arr1.length + arr2.length];
+        char[] arrBoth = new char[arr1.length + arr2.length];
+
         for (int i = 0; i < arr1.length; i++) {
             arrBoth[i] = arr1[i];
         }
-        for (int i = arr2.length; i < arrBoth.length; i++) {
+
+        for (int i = 0; i < arr2.length; i++) {
             arrBoth[arr1.length + i] = arr2[i];
         }
 
         return arrBoth;
     }
+
 
     /** Returns a new array that can be described as a sub-array of this array.
      *  The sub-array begins at the specified beginIndex and extends to the character at index endIndex - 1.
@@ -108,13 +111,15 @@ public class ArrCharOps {
      *  characters containing the characters "urge".
      */     
     public static char[] subArray(char[] arr, int beginIndex, int endIndex) {
-        arrSub = new char[endIndex-beginIndex];
-        int i = beginIndex;
-        for (int l = 0; l < arrSub.length; l++) {
-            arrSub[l] = arr1[beginIndex + l];
-        }
-        return arrSub;
+    char[] arrSub = new char[endIndex - beginIndex];
+
+    for (int i = 0; i < arrSub.length; i++) {
+        arrSub[i] = arr[beginIndex + i];
     }
+
+    return arrSub;
+}
+
 
      /** Returns a single integer that represents the given array. This integer is sometimes 
      *  referred to as the array's "hash code". Later in the course we'll explain what these 
@@ -124,16 +129,17 @@ public class ArrCharOps {
      *  The hash value of an empty array is zero.
      */
     public static long hashCode(char[] arr) {
-            char[] arrBoth = new char[arr.length + arr2.length];
-            int n = arr.length;
-            long powerOf7 = 1; //7^0
-            for (int i=n-1; i>=0; i--) {
-                hash += arr[i] * powerOf7;
-                powerOf7 *= 7;
-            }
-            
-        return hash;
+    long hash = 0;
+    long powerOf7 = 1;
+
+    for (int i = arr.length - 1; i >= 0; i--) {
+        hash += arr[i] * powerOf7;
+        powerOf7 *= 7;
     }
+
+    return hash;
+}
+
 
     /**
      * Compares the two strings lexicographically.
@@ -161,28 +167,22 @@ public class ArrCharOps {
      *         return -2 if there is an error with the input.
      */
     public static int compareTo(String str1, String str2) {
-        int len1 = str1.length();
-        int len2 = str2.kength();
-        int minLength = Math.min(len1, len2);
-        
-        for (int=0; i<minLength; i++) { //check
-            char char1 = str1.charAt(i);
-            char char2 = str2.charAt(i);
+    int len1 = str1.length();
+    int len2 = str2.length();
+    int minLength = Math.min(len1, len2);
 
-            if (char1 != char2) {
-                if (char1 < char2) {
-                    return -1; //str1 is smaller
-                } else {
-                    return 1; //str1 is larger
-                }
-            }
-            if (len1 < len2) { //compares lengths
-                return -1; //str1 smaller
-            }
-            else if (len1 > len2) {
-                return 1; //str1 larger
-            } else {
-                return 0; //equal
-            }
-        }
+    for (int i = 0; i < minLength; i++) {
+        char c1 = str1.charAt(i);
+        char c2 = str2.charAt(i);
+
+        if (c1 < c2) return -1;
+        if (c1 > c2) return 1;
     }
+
+    if (len1 < len2) return -1;
+    if (len1 > len2) return 1;
+
+    return 0;
+    }   
+
+}
