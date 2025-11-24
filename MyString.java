@@ -37,7 +37,8 @@ public class MyString {
 
     /** If str1 contains str2, returns true; otherwise returns false. */
     public static boolean contains(String str1, String str2) {
-        for (int l = 0; l<+str2.length(); l++) {
+        
+        for (int l = 0; l<=str1.length() - str2.length(); l++) {
             boolean contains = true;
 
             for (int i = 0; i<str2.length(); i++) {
