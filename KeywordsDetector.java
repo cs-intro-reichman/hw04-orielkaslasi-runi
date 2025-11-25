@@ -24,7 +24,7 @@ public class KeywordsDetector {
         
         for (int i = 0; i<sentences.length; i++) { //this will go over the sentences
             for (int j = 0; j<keywords.length; j++) { //goes over keywords
-                String lowerTempSent = MyString.lowerCase(sentences[i]);
+                String lowerTempSent = MyString.lowerCase(sentences[i]); // check
                 String lowerTempKey = MyString.lowerCase(keywords[j]);
                 if (MyString.contains(lowerTempSent, lowerTempKey)) {
                     System.out.println(sentences[i]);
